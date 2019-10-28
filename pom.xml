@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>at.htl</groupId>
+    <artifactId>asciidoctor-maven-examples</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>AsciiDoc Maven Examples</name>
+    <description>Collection of sample projects that demonstrate numerous ways to use the Asciidoctor Maven plugin in a Maven project.</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <asciidoctor.maven.plugin.version>2.0.0-RC.1</asciidoctor.maven.plugin.version>
+        <asciidoctor-revealjs.version>master</asciidoctor-revealjs.version>
+        <asciidoctorj.version>2.0.0</asciidoctorj.version>
+        <asciidoctorj.diagram.version>1.5.18</asciidoctorj.diagram.version>
+        <asciidoctorj.pdf.version>1.5.0-alpha.18</asciidoctorj.pdf.version>
+        <jruby.version>9.2.8.0</jruby.version>
+        <rubygems.prawn.version>2.0.2</rubygems.prawn.version>
+    </properties>
+
+    <modules>
+        <module>asciidoctor-pdf</module>
+    </modules>
+
+    <build>
+        <defaultGoal>compile</defaultGoal>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>update-properties</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.gmaven</groupId>
+                        <artifactId>gmaven-plugin</artifactId>
+                        <version>1.5</version>
+                        <inherited>false</inherited>
+                        <executions>
+                            <execution>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                        <source>${pom.basedir}/update-properties.groovy</source>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.codehaus.groovy</groupId>
+                                <artifactId>groovy-nio</artifactId>
+                                <version>2.5.8</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>check-styles</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.gmaven</groupId>
+                        <artifactId>gmaven-plugin</artifactId>
+                        <version>1.5</version>
+                        <inherited>false</inherited>
+                        <executions>
+                            <execution>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <source>${pom.basedir}/check_styles.groovy</source>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.codehaus.groovy</groupId>
+                                <artifactId>groovy-nio</artifactId>
+                                <version>2.5.8</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>
