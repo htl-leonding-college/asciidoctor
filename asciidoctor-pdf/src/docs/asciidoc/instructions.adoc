@@ -1,0 +1,112 @@
+# MyHashSet
+
+.Lernziele
+* Collections
+* Hashing
+* Interfaces
+
+## Aufgabenstellung
+
+### Grundsätzliche Vorgehensweise
+
+Implementieren Sie eine Klasse `MyHashSet` für die Elemente der Klasse `Person`.
+Ein Objekt der Klasse `MyHashSet` verwaltet eine Anzahl Buckets (zB 5).
+Die Anzahl ist eine Primzahl.
+Wird nun eine Person in diesem Hashset gespeichert, so wird aus der Summe der Buchstaben aus Vor- und Nachname modulo der Primzahl ermittelt, in welchem Bucket die Person gespeichert wird.
+
+.Klasse "Person"
+[plantuml,"instructions"]
+....
+class Person {
+    - String firstName;
+    - String lastName;
+}
+....
+
+Folgendes Interface ist gegeben:
+
+.Interface "IHashSetPerson"
+[plantuml,interface/IHashSetPerson]
+....
+interface IHashSetPerson {
+ + boolean add(Person person);
+ + void clear();
+ + boolean contains(Person person);
+ + boolean isEmpty();
+ + boolean remove(Person p);
+ + int size();
+ + Person get(String firstName, String lastName)
+}
+....
+
+vgl.
+Sie hierzu link:https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/HashSet.html#method.summary[HashSet in der Oracle Doku, _window=blank]]
+
+### Architektur
+
+Die Implementierung sieht wie folgt aus:
+
+.Architektur
+[plantuml,architecture]
+....
+class MyHashSet
+class Bucket
+class Person
+
+MyHashSet "1" <--left-- "*" Bucket : contains
+Bucket "1" <--left-- "*" Person : contains
+....
+
+Ein Objekt der Klasse `MyHashSet` enthält (in unserem Bsp) 5 Buckets.
+Jede Person wird in Ihrem Bucket eingefügt.
+Die Nummer des Buckets errechnet sich wie folgt:
+
+[source,java]
+----
+(lastName.length() + firstName.length()) % 5
+----
+
+Jeder Bucket enthält eine List mit den jeweiligen Personen.
+Wird nun eine Person aus der HashList entnommen, wird zunächst der korrekte Bucket berechnet.
+Anschließend wird die List in diesem Bucket durchlaufen, bis die Person gefunden wird.
+Ist die Person nicht im HashSet enthalten wird `null` zurückgegeben.
+
+### Unittests
+
+Erstellen Sie für alle Funktionen Unit-Tests. +
+Verwenden Sie hierfür anstelle des veralteten Hamcrests die Bibliothek link:https://joel-costigliola.github.io/assertj/assertj-core-quick-start.html[AssertJ,window=_blank]
+
+### Code-Konventionen
+
+* Verwenden Sie im Code keine Literale, sondern Konstanten (zB `NO_OF_BUCKETS`)
+* Beim Zugriff von außen auf eine Collection der Klasse, soll/muss diese unveränderlich sein:
+vgl. `Collections.unmodifiableList(myList)`
+
+### pom.xml
+
+.Auszug aus der pom.xml
+[source,xml]
+----
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <junit-jupiter.version>5.5.2</junit-jupiter.version>
+        <assertj-core.version>3.11.1</assertj-core.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+----

@@ -1,0 +1,43 @@
+# Asciidoctor-Features
+ifndef::sourcedir[:sourcedir: ../../main/java]
+ifndef::imagesdir[:imagesdir: ../../../../images]
+
+## Include Source Code
+
+[source, java]
+.Java code from project
+----
+include::{sourcedir}/at/htl/asciidoctor/AsciidoctorDemo.java[tags=myloop,indent=0]
+----
+
+## Images
+
+First, declare the image folder in the pom.xml in the plugin section
+
+----
+<attributes>
+    ...
+    <imagesdir>images</imagesdir>
+</attributes>
+----
+
+In the text you can add the image
+
+----
+image::target-folder.png[]
+----
+
+image::target-folder.png[]
+
+* inline images
++
+----
+image:target-folder.png[]
+----
+
+* block images
++
+----
+image::target-folder.png[]
+----
+
