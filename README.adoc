@@ -1,11 +1,68 @@
 # Asciidoc Features
+ifndef::imagesdir[:imagesdir: images]
 
 This repo shows how to implement the different Asciidoctor Features
 
 For more information look at the official repo link:https://github.com/asciidoctor/asciidoctor-maven-examples[Asciidoctor-maven-examples]
 There you find more and comprehensive examples.
 
+link:https://asciidoctor.org/docs/user-manual[Asciidoctor User Manual]
+
+link:https://asciidoctor.org/docs/asciidoctor-maven-plugin[asciidoctor-maven-plugin docs]
+
+== How to generate documentation files
+
+
+.Ho to start
+|===
+|command |description
+
+a|
+----
+mvn
+----
+|the default phase "generate-resources" will be executed for all modules
+
+a|
+----
+cd asciidoctor-pdf
+mvn
+----
+|the default phase "generate-resources" will be executed for one submodules
+
+a|
+----
+mvn clean generate-resources
+----
+|the target folder will be removed and the default phase "generate-resources" for all modules will be executed for all submodules
+
+a|
+----
+cd asciidoctor-pdf
+mvn clean generate-resources
+----
+|the target folder will be removed and the default phase "generate-resources" for this submodules will be executed for all submodules
+
+a|
+----
+cd asciidoctor-pdf
+mvn clean package
+----
+|the target folder will be removed and the doc will be generated and the source code compiled and packaged for all submodules. Use Apache Shade for including the dependencies in the jar and creating the manifest-file.
+
+|===
+
+TIP: cleaning the target folder is always a good idea
+
 == Example catalog
 
 link:asciidoctor-pdf/README.adoc[asciidoctor-pdf] ::
-Demonstrates how to convert AsciiDoc to pdf using the Asciidoctor Maven plugin.
+Demonstrates how to convert AsciiDoc to pdf using the Asciidoctor Maven plugin. +
+The generated pdf-document is located in the target folder
++
+image::target-folder.png[]
+
+
+
+
+
