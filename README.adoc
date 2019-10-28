@@ -10,6 +10,10 @@ link:https://asciidoctor.org/docs/user-manual[Asciidoctor User Manual]
 
 link:https://asciidoctor.org/docs/asciidoctor-maven-plugin[asciidoctor-maven-plugin docs]
 
+== Requirements
+
+For using plantuml you have to install link:http://www.graphviz.org/download/[Graphviz]
+
 == How to generate documentation files
 
 
