@@ -58,7 +58,7 @@ TIP: cleaning the target folder is always a good idea
 
 link:asciidoctor-pdf/README.adoc[asciidoctor-pdf] ::
 Demonstrates how to convert AsciiDoc to pdf using the Asciidoctor Maven plugin. +
-The generated pdf-document is located in the target folder
+The generated documents (pdf, html5) are located in the target folder
 +
 image::target-folder.png[]
 
