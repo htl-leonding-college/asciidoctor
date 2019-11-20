@@ -1,7 +1,4 @@
 = Asciidoc Features
-ifdef::env-github[]
-:sourcedir: https://raw.githubusercontent.com/Maxwahl/asciidoctor/master/
-endif::[]
 ifndef::imagesdir[:imagesdir: images]
 :toc:
 This repo shows how to implement the different Asciidoctor Features
@@ -79,7 +76,13 @@ Step 1: Store your diagram in a separate file:
 For example contents of assets/example.iuml:
 [source,asciidoc]
 ----
-include::assets/example.iuml[]
+@startuml
+Class01 <|-- Class02
+Class03 *-- Class04
+Class05 o-- Class06
+Class07 .. Class08
+Class09 -- Class10
+@enduml
 ----
 
 
