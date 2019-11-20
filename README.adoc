@@ -1,6 +1,6 @@
 = Asciidoc Features
 ifdef::env-github[]
-:sourcedir: https://raw.githubusercontent.com/Maxwahl/asciidoctor/master
+:sourcedir: https://raw.githubusercontent.com/Maxwahl/asciidoctor/master/
 endif::[]
 ifndef::imagesdir[:imagesdir: images]
 :toc:
