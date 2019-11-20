@@ -1,5 +1,7 @@
 = Asciidoc Features
+ifdef::env-github[]
 ifndef::imagesdir[:imagesdir: images]
+endif::[]
 :toc:
 This repo shows how to implement the different Asciidoctor Features
 
@@ -105,4 +107,5 @@ image::http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubuse
 ----
 
 This results in:
+
 image::http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/Maxwahl/asciidoctor/master/assets/example.iuml[Example]
