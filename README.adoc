@@ -1,6 +1,6 @@
-# Asciidoc Features
+= Asciidoc Features
 ifndef::imagesdir[:imagesdir: images]
-
+:toc:
 This repo shows how to implement the different Asciidoctor Features
 
 For more information look at the official repo link:https://github.com/asciidoctor/asciidoctor-maven-examples[Asciidoctor-maven-examples]
@@ -66,7 +66,50 @@ The generated documents (pdf, html5) are located in the target folder
 +
 image::target-folder.png[]
 
+== Showing PlantUML diagrams on GitHub
+
+Usually, PlantUML diagrams are not rendered on Github repository overviews. However
+there is a neat workaround involving PlantUML-render-servers to make diagrams visible.
+
+Step 1: Store your diagram in a separate file:
+
+For example contents of assets/example.iuml:
+[source,asciidoc]
+----
+@startuml
+Class01 <|-- Class02
+Class03 *-- Class04
+Class05 o-- Class06
+Class07 .. Class08
+Class09 -- Class10
+@enduml
+----
 
 
+On your desktop, graphviz usually renders PlantUML diagrams, but in browsers, this
+does not work.
 
+To get around this, PlantUML provides instructions on how to host a server which turns
+a .iuml file into an image which can be displayed.
 
+Luckily for us, there are a lot of publicly available servers to render your diagrams.
+For instance, the official PlantUML server at http://www.plantuml.com/plantuml/
+
+Step 2: Embedding an Image
+
+In combination with raw.githubusercontent.com we can now feed the server the diagram file
+to render our image for us.
+
+For example, the source of assets/example.iuml would be:
+
+https://raw.githubusercontent.com/Maxwahl/asciidoctor/master/assets/example.iuml
+
+Now we embed the image with the following line:
+[source,asciidoc]
+----
+image::http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/Maxwahl/asciidoctor/master/assets/example.iuml[Example]
+----
+
+This results in:
+
+image::http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/Maxwahl/asciidoctor/master/assets/example.iuml[Example]
