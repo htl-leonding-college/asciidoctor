@@ -1,7 +1,8 @@
 = Asciidoc Features
 ifdef::env-github[]
-ifndef::imagesdir[:imagesdir: images]
+:sourcedir:[https://raw.githubusercontent.com/Maxwahl/asciidoctor/master]
 endif::[]
+ifndef::imagesdir[:imagesdir: images]
 :toc:
 This repo shows how to implement the different Asciidoctor Features
 
